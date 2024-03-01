@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { TodoDispatchContext } from "./App";
+import { TodoDispatchContext } from "../App";
 
 const TodoItem = ({ id, content }) => {
     const { onDelete } = useContext(TodoDispatchContext);

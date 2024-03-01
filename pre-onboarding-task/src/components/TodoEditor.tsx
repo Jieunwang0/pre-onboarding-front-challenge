@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { TodoDispatchContext } from "./App";
+import { TodoDispatchContext } from "../App";
 
 const TodoEditor = () => {
     const { onCreate } = useContext(TodoDispatchContext);
@@ -24,7 +24,6 @@ const TodoEditor = () => {
         setState({
             content: "",
         });
-
     };
 
     return (

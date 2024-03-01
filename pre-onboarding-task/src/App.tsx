@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useReducer, useRef } from "react";
 import "./App.css";
-import TodoList from "./TodoList";
-import TodoEditor from "./TodoEditor";
+import TodoList from "./components/TodoList";
+import TodoEditor from "./components/TodoEditor";
 
 interface ListItem {
     id: number;
@@ -10,7 +10,7 @@ interface ListItem {
 type TodoAction =
     | { type: "CREATE"; data: ListItem }
     | { type: "DELETE"; targetId: number };
-    
+
 const reducer = (state: ListItem[], action: TodoAction) => {
     switch (action.type) {
         case "CREATE": {
@@ -35,9 +35,7 @@ const App = () => {
     // const [list, setList] = useState<ListItem[]>([]);
     const listId = useRef<number>(0);
 
-
-
-    const onCreate = useCallback((content:string) => {
+    const onCreate = useCallback((content: string) => {
         dispatch({
             type: "CREATE",
             data: {
@@ -48,15 +46,14 @@ const App = () => {
         listId.current += 1;
     }, []);
 
-
     const onDelete = useCallback((targetId: number) => {
-         dispatch({ type: "DELETE", targetId });
+        dispatch({ type: "DELETE", targetId });
     }, []);
 
- const memoizedDispatches = useMemo(() => {
-     return { onCreate, onDelete };
- }, []);
- 
+    const memoizedDispatches = useMemo(() => {
+        return { onCreate, onDelete };
+    }, []);
+
     return (
         <TodoStateContext.Provider value={list}>
             <TodoDispatchContext.Provider value={memoizedDispatches}>
